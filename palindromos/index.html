@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Palíndromos</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Verificador de Palíndromos</h1>
+        <p>Digite uma palavra ou frase para verificar se é um palíndromo:</p>
+        <input type="text" id="text-input" placeholder="Digite aqui...">
+        <button id="check-btn">Verificar</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const textInput = document.getElementById('text-input');
+        const checkBtn = document.getElementById('check-btn');
+        const resultDiv = document.getElementById('result');
+
+        checkBtn.addEventListener('click', () => {
+            const originalInput = textInput.value;
+
+            if (originalInput.trim() === '') {
+                alert('Please input a value.');
+                return;
+            }
+
+            resultDiv.textContent = ''; 
+
+            // Esta linha remove caracteres não alfanuméricos e converte para minúsculas
+            const cleanedInput = originalInput.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+            // Esta linha inverte a string limpa
+            const reversedInput = cleanedInput.split('').reverse().join('');
+            
+            let message = `${originalInput} `;
+
+            if (cleanedInput === reversedInput) {
+                message += 'is a palindrome.';
+            } else {
+                message += 'is not a palindrome.';
+            }
+
+            resultDiv.textContent = message;
+        });
+    </script>
+</body>
+</html>
